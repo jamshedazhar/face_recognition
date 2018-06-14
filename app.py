@@ -31,7 +31,7 @@ def get_boundary_box(boundary, image_shape):
     X = max(boundary[3], 0)
     Y = max(boundary[0], 0)
     width = min(abs(X - boundary[1]), image_shape[0])
-    height = min(abs(Y - boundary[2]), image_shape[0])
+    height = min(abs(Y - boundary[2]), image_shape[1])
     return [X, Y, width, height]
 
 
