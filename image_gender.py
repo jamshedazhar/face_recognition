@@ -20,13 +20,12 @@ def detect_genders(face, image):
     try:
         rgb_face = cv2.resize(rgb_face, gender_target_size)
     except Exception as e:
-        print(e)
+        print('Error while resizing the image', e)
         return result
 
     rgb_face = pre_process_input(rgb_face)
     rgb_face = np.expand_dims(rgb_face, 0)
     gender_prediction = gender_classifier.predict(rgb_face)
-    print(gender_prediction)
     result = {
         'woman': float(gender_prediction[0][0]),
         'man': float(gender_prediction[0][1])

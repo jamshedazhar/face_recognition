@@ -31,8 +31,9 @@ RUN  pip install opencv-python==3.4.1.15 \
         tensorflow==1.8.0
 
 COPY . /root/face_recognotion
-
 WORKDIR /root/face_recognotion
+
+EXPOSE 8080
 
 CMD ["python3", "app.py"]
 
