@@ -23,7 +23,7 @@ def load_image(image_url):
         img = img.convert('RGB')
         return np.array(img)
     except Exception as e:
-        print("Not a valid image", e)
+        print("Not a valid image found on {0}: {1}".format(image_url, e))
         return None
 
 
@@ -36,9 +36,21 @@ def get_boundary_box(boundary, image_shape):
 
 
 @app.route('/', methods=['GET'])
+def health_check():
+    return "Yay !! It's working!!"
+
+
+@app.route('/', methods=['POST'])
 def image_handler():
     results = {'faces': []}
-    image_url = request.args.get('url')
+    if request.json is not None:
+        image_url = request.json['url']
+    elif request.form is not None:
+        image_url = request.form['url']
+    else:
+        return "You must pass 'url' parameter."
+
+    print("Received image url: {0}".format(image_url))
     image = load_image(image_url)
 
     if image is None:
@@ -52,7 +64,6 @@ def image_handler():
         results['faces'].append({'boundingBox': boundary_box, 'gender': gender})
 
     print(results)
-
     return jsonify(results)
 
 
