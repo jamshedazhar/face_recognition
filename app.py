@@ -9,7 +9,7 @@ import requests
 from PIL import Image
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
-from image_gender import detect_genders
+#from image_gender import detect_genders
 
 face_detector = dlib.get_frontal_face_detector()
 app = Flask(__name__)
@@ -65,8 +65,8 @@ def image_handler():
     for face in faces:
         face_boundary = face.top(), face.right(), face.bottom(), face.left()
         boundary_box = get_boundary_box(face_boundary, image.shape)
-        gender = detect_genders(boundary_box, image)
-        results['faces'].append({'boundingBox': boundary_box, 'gender': gender})
+        #gender = detect_genders(boundary_box, image)
+        results['faces'].append({'boundingBox': boundary_box})
 
     print(results)
     return jsonify(results)
