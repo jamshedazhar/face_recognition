@@ -28,7 +28,8 @@ RUN  pip install opencv-python==3.4.1.15 \
         Pillow==5.1.0 \
         flask==1.0.2 \
         keras==2.2.0 \
-        tensorflow==1.8.0
+        tensorflow==1.8.0 \
+        flask-cors
 
 COPY . /root/face_recognotion
 WORKDIR /root/face_recognotion
