@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from keras.models import load_model
 
-gender_model_path = '/home/ubuntu/face_recognition/trained_models/gender_models/simple_CNN.81-0.96.hdf5'
+gender_model_path = 'trained_models/gender_models/simple_CNN.81-0.96.hdf5'
 gender_classifier = load_model(gender_model_path, compile=False)
 
 # https://github.com/keras-team/keras/issues/6462
